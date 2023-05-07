@@ -111,16 +111,60 @@ const createTour = (req, res) => {
 
 
 
-//All ROUTES
-// app.get('/api/v1/tours', getAllTours);
-// app.get('/api/v1/tours/:id', getTour);
-app.patch('/api/v1/tours/:id', updateTour);
-app.delete('/api/v1/tours/:id', deleteTour);
-app.post('/api/v1/tours', createTour);
+const getAllUsers=(req,res)=>{
+  res.status(500).json({
+    status:'error',
+    message:'This route is not yet defind'
+  })
+}
+const getUser=(req,res)=>{
+  res.status(500).json({
+    status:'error',
+    message:'This route is not yet defind'
+  })
+}
+const createUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defind',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defind',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not yet defind',
+  });
+};
 
 
-app.route('/api/v1/tours').get(getAllTours).post(createTour);
-app.route('/api/v1/tours/:id')
+
+
+//All Routes
+const tourRouter = express.Router();
+const userRouter = express.Router();
+
+
+
+//1.Tours
+tourRouter.route('/').get(getAllTours).post(createTour);
+
+tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour)
+
+
+//2.Users
+
+userRouter.route('/').get(getAllUsers).post(createUsers)
+userRouter.route('/:id').get(getUser).patch(updateUser).delete(deleteUser)
+
+
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 
 
 
