@@ -9,9 +9,7 @@ const userRouter = require('./routes/userRoutes');
 app.use(express.json());
 app.use(morgan('dev'));
 
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
-);
+
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);

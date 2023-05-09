@@ -1,6 +1,23 @@
 const express =require('express');
+
+
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
+);
+exports.checkID=(req,res,next,val)=>{
+  if (req.params.id * 1>tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+   
+} next();}
+
+
+
+
 //get all tours
-const getAllTours = (req, res) => {
+const getAllTours = (req, res)  => {
   res.status(200).json({
     status: 'success',
     result: tours.length,
@@ -32,12 +49,7 @@ const getTour = (req, res) => {
 
 //patch request to edit
 const updateTour = (req, res) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  }
+ 
   res.status(200).json({
     status: 'success',
     data: {
@@ -48,12 +60,7 @@ const updateTour = (req, res) => {
 
 //Delete the tour
 const deleteTour = (req, res) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Invalid ID',
-    });
-  }
+
   res.status(204).json({
     status: 'success',
     data: {
