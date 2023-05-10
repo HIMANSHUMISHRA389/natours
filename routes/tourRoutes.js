@@ -36,7 +36,7 @@ const getTour = (req, res) => {
       status: 'fail',
       message: 'Invalid ID',
     });
-  }
+  } 
 
   res.status(200).json({
     status: 'success',
